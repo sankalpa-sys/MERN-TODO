@@ -6,5 +6,16 @@ services:
     ports:
       - '8001:8001'
     volumes:
-      - ./backend:/app
-      - ./app/node_modules
+      - ./backend:/app/backend
+      - ./app/backend/node_modules
+
+  frontend:
+    build: ./frontend
+    container_name: frontend_c
+    env_file:
+      - ./frontend/.env.local
+    ports:
+      - '3001:3000'
+    volumes:
+      - ./frontend:/app/frontend
+      - ./app/frontend/node_modules
